@@ -13,13 +13,13 @@ import java.util.concurrent.*;
 
 public class Driver {
 
-    /*
+    /**
     Creating a private constructor, so we are closing
     access to the object of this class from outside the class
      */
     private Driver(){}
 
-    /*
+    /**
     We make WebDriver private, because we want to close access from outside the class.
     We make it static because we will use it in a static method.
      */
@@ -27,21 +27,21 @@ public class Driver {
 
     private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
 
-    /*
+    /**
     Create a re-usable utility method which will return same driver instance when we call it
      */
     public static WebDriver getDriver(){
 
         if (driverPool.get() == null){
 
-            /*
+            /**
             We read our browserType from configuration.properties.
             This way, we can control which browser is opened from outside our code, from configuration.properties.
              */
             String browserType = ConfigurationReader.getProperty("browser");
 
 
-            /*
+            /**
                 Depending on the browserType that will be return from configuration.properties file
                 switch statement will determine the case, and open the matching browser
             */
@@ -61,7 +61,7 @@ public class Driver {
                     break;
                 case "remote-chrome":
                     // assign your grid server address
-                    String gridAdress = "54.89.242.106"; // put your own Linux grid IP here
+                    String gridAdress = "18.207.195.239/"; // put your own Linux grid IP here
                     try {
                         URL url = new URL("http://"+gridAdress+":4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
